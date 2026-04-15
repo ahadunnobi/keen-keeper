@@ -5,6 +5,29 @@ import { Plus } from "lucide-react";
 
 export default function Home() {
   const { friends, loading, error } = useFriends();
+  const totalFriends = friends.length;
+  const overdueConnections = friends.filter(
+    (friend) => friend.status.toLowerCase() === "overdue",
+  ).length;
+  const upcomingDue = friends.filter(
+    (friend) => friend.status.toLowerCase() === "almost due",
+  ).length;
+  const averageGoal =
+    totalFriends === 0
+      ? 0
+      : Math.round(
+          friends.reduce((sum, friend) => {
+            const parsedGoal = Number.parseInt(friend.goal, 10);
+            return sum + (Number.isNaN(parsedGoal) ? 0 : parsedGoal);
+          }, 0) / totalFriends,
+        );
+
+  const summaryCards = [
+    { label: "Total Friends", value: totalFriends.toString() },
+    { label: "Overdue Connections", value: overdueConnections.toString() },
+    { label: "Upcoming Due", value: upcomingDue.toString() },
+    { label: "Average Goal", value: `${averageGoal} days` },
+  ];
 
   return (
     <section className="space-y-6">
@@ -26,6 +49,22 @@ export default function Home() {
           </button>
         </div>
       </header>
+
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {summaryCards.map((card) => (
+          <article
+            key={card.label}
+            className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+          >
+            <p className="text-xs font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+              {card.label}
+            </p>
+            <p className="mt-2 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+              {loading ? "..." : card.value}
+            </p>
+          </article>
+        ))}
+      </section>
 
       <header className="space-y-2">
         <h2 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
