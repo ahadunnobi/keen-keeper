@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { FriendsProvider } from "@/context/friends-context";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
             <main className="flex-1 rounded-2xl border border-neutral-200/80 bg-white/90 p-4 shadow-sm backdrop-blur supports-backdrop-filter:bg-white/70 dark:border-neutral-800 dark:bg-neutral-900/85 sm:p-6">
               {children}
             </main>
+            <Footer />
           </div>
         </FriendsProvider>
       </body>
