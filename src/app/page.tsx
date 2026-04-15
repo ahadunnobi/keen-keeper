@@ -1,7 +1,9 @@
 "use client";
 
 import { useFriends } from "@/context/friends-context";
+import FriendCard from "@/components/friend-card";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const { friends, loading, error } = useFriends();
@@ -76,9 +78,12 @@ export default function Home() {
       </header>
 
       {loading ? (
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">
-          Loading friends...
-        </p>
+        <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
+          <span className="h-5 w-5 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-800 dark:border-neutral-700 dark:border-t-neutral-200" />
+          <p className="text-sm text-neutral-600 dark:text-neutral-300">
+            Loading friends...
+          </p>
+        </div>
       ) : null}
 
       {error ? (
@@ -88,21 +93,15 @@ export default function Home() {
       ) : null}
 
       {!loading && !error ? (
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {friends.map((friend) => (
-            <li
-              key={friend.id}
-              className="rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900"
-            >
-              <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                {friend.name}
-              </p>
-              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                {friend.email}
-              </p>
-              <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-300">
-                Status: {friend.status} | Last contact: {friend.days_since_contact}d
-              </p>
+            <li key={friend.id}>
+              <Link
+                href={`/friend/${friend.id}`}
+                className="block h-full cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950"
+              >
+                <FriendCard friend={friend} />
+              </Link>
             </li>
           ))}
         </ul>
