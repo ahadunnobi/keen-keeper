@@ -1,16 +1,36 @@
 "use client";
 
 import { useFriends } from "@/context/friends-context";
+import { Plus } from "lucide-react";
 
 export default function Home() {
   const { friends, loading, error } = useFriends();
 
   return (
     <section className="space-y-6">
+      <header className="overflow-hidden rounded-2xl border border-violet-200/70 bg-linear-to-br from-violet-100 via-white to-cyan-100 p-6 text-center shadow-sm dark:border-violet-900/60 dark:from-violet-950/60 dark:via-neutral-900 dark:to-cyan-950/40 sm:p-10">
+        <div className="mx-auto max-w-2xl space-y-4">
+          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-4xl">
+            Welcome to KeenKeeper
+          </h1>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300 sm:text-base">
+            Build stronger friendships with intentional reminders and meaningful
+            check-ins.
+          </p>
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
+          >
+            <Plus size={16} />
+            Add a Friend
+          </button>
+        </div>
+      </header>
+
       <header className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
-          KeenKeeper Friends
-        </h1>
+        <h2 className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+          Your Friends
+        </h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           Global mock data source with simulated loading state.
         </p>
