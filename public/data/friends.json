@@ -1,0 +1,98 @@
+[
+  {
+    "id": "f-001",
+    "name": "Ariana Bell",
+    "picture": "https://i.pravatar.cc/160?img=32",
+    "email": "ariana.bell@example.com",
+    "days_since_contact": 2,
+    "status": "on_track",
+    "tags": ["gym", "accountability", "weekly"],
+    "bio": "Product designer who loves early morning workouts and coffee walks.",
+    "goal": "Check in once a week and keep each other consistent with fitness habits.",
+    "next_due_date": "2026-04-18"
+  },
+  {
+    "id": "f-002",
+    "name": "Ethan Park",
+    "picture": "https://i.pravatar.cc/160?img=12",
+    "email": "ethan.park@example.com",
+    "days_since_contact": 11,
+    "status": "due_soon",
+    "tags": ["tech", "mentoring", "career"],
+    "bio": "Frontend engineer and meetup organizer focused on developer growth.",
+    "goal": "Share updates every two weeks and exchange learning resources.",
+    "next_due_date": "2026-04-17"
+  },
+  {
+    "id": "f-003",
+    "name": "Maya Rivera",
+    "picture": "https://i.pravatar.cc/160?img=47",
+    "email": "maya.rivera@example.com",
+    "days_since_contact": 24,
+    "status": "overdue",
+    "tags": ["travel", "close_friend", "life"],
+    "bio": "Photographer based in Lisbon who is always planning the next trip.",
+    "goal": "Reconnect monthly with a proper voice call.",
+    "next_due_date": "2026-04-10"
+  },
+  {
+    "id": "f-004",
+    "name": "Noah Kim",
+    "picture": "https://i.pravatar.cc/160?img=15",
+    "email": "noah.kim@example.com",
+    "days_since_contact": 6,
+    "status": "on_track",
+    "tags": ["startup", "founder", "ideas"],
+    "bio": "Early-stage founder experimenting with AI productivity workflows.",
+    "goal": "Catch up every 10 days and share progress blockers.",
+    "next_due_date": "2026-04-20"
+  },
+  {
+    "id": "f-005",
+    "name": "Sophie Martin",
+    "picture": "https://i.pravatar.cc/160?img=5",
+    "email": "sophie.martin@example.com",
+    "days_since_contact": 14,
+    "status": "due_soon",
+    "tags": ["book_club", "creative", "weekend"],
+    "bio": "Copywriter and book club host with a love for literary fiction.",
+    "goal": "Send one thoughtful message and one recommendation every two weeks.",
+    "next_due_date": "2026-04-16"
+  },
+  {
+    "id": "f-006",
+    "name": "Liam Chen",
+    "picture": "https://i.pravatar.cc/160?img=54",
+    "email": "liam.chen@example.com",
+    "days_since_contact": 1,
+    "status": "on_track",
+    "tags": ["running", "health", "habits"],
+    "bio": "Marathon runner and health coach who tracks everything in spreadsheets.",
+    "goal": "Stay connected through quick check-ins after Sunday runs.",
+    "next_due_date": "2026-04-22"
+  },
+  {
+    "id": "f-007",
+    "name": "Priya Shah",
+    "picture": "https://i.pravatar.cc/160?img=44",
+    "email": "priya.shah@example.com",
+    "days_since_contact": 31,
+    "status": "overdue",
+    "tags": ["family_friend", "support", "long_term"],
+    "bio": "Operations lead balancing work and parenting two energetic kids.",
+    "goal": "Set up a monthly check-in call and offer practical support.",
+    "next_due_date": "2026-04-08"
+  },
+  {
+    "id": "f-008",
+    "name": "Daniel Brooks",
+    "picture": "https://i.pravatar.cc/160?img=61",
+    "email": "daniel.brooks@example.com",
+    "days_since_contact": 9,
+    "status": "due_soon",
+    "tags": ["music", "creative", "project"],
+    "bio": "Indie musician building a home studio and releasing songs monthly.",
+    "goal": "Message before each release and celebrate milestones together.",
+    "next_due_date": "2026-04-19"
+  }
+]
