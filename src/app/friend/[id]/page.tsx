@@ -1,6 +1,7 @@
 "use client";
 
 import { useFriends } from "@/context/friends-context";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -50,6 +51,18 @@ export default function FriendDetailsPage() {
     );
   }
 
+  const statusStyles: Record<string, string> = {
+    overdue:
+      "border-red-200 bg-red-50 text-red-700 dark:border-red-900/70 dark:bg-red-950/40 dark:text-red-300",
+    "almost due":
+      "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/70 dark:bg-amber-950/40 dark:text-amber-300",
+    "on-track":
+      "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/40 dark:text-emerald-300",
+  };
+  const statusClass =
+    statusStyles[friend.status.toLowerCase()] ??
+    "border-neutral-200 bg-neutral-100 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200";
+
   return (
     <section className="space-y-6">
       <header className="space-y-1">
@@ -61,10 +74,54 @@ export default function FriendDetailsPage() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)]">
         <aside className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-          <h2 className="text-lg font-semibold tracking-tight">Friend Info</h2>
-          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-            Left column profile card.
-          </p>
+          <div className="space-y-5">
+            <Image
+              src={friend.picture}
+              alt={friend.name}
+              width={320}
+              height={320}
+              className="h-56 w-full rounded-2xl object-cover ring-1 ring-neutral-200 dark:ring-neutral-800"
+            />
+
+            <div className="space-y-2">
+              <span
+                className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold uppercase tracking-wide ${statusClass}`}
+              >
+                {friend.status}
+              </span>
+              <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                {friend.name}
+              </h2>
+              <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+                {friend.bio}
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                Tags
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {friend.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-neutral-300 bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-neutral-200/80 bg-neutral-50 p-3 dark:border-neutral-800 dark:bg-neutral-950/60">
+              <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                Email
+              </p>
+              <p className="mt-1 text-sm font-medium text-neutral-800 dark:text-neutral-100">
+                {friend.email}
+              </p>
+            </div>
+          </div>
         </aside>
 
         <div className="space-y-4">
