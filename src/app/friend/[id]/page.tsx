@@ -152,9 +152,32 @@ export default function FriendDetailsPage() {
         <div className="space-y-4">
           <section className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
             <h2 className="text-lg font-semibold tracking-tight">Stats</h2>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-              Right column content placeholder.
-            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <article className="rounded-xl border border-blue-200 bg-blue-50/70 p-4 dark:border-blue-900/60 dark:bg-blue-950/30">
+                <p className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-300">
+                  Days Since Contact
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                  {friend.days_since_contact}
+                </p>
+              </article>
+              <article className="rounded-xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-900/60 dark:bg-violet-950/30">
+                <p className="text-xs font-semibold uppercase tracking-wide text-violet-700 dark:text-violet-300">
+                  Goal (days)
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                  {friend.goal}
+                </p>
+              </article>
+              <article className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/30">
+                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+                  Next Due Date
+                </p>
+                <p className="mt-2 text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                  {friend.next_due_date}
+                </p>
+              </article>
+            </div>
           </section>
         </div>
       </div>
