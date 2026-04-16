@@ -22,17 +22,30 @@ export type Friend = {
   next_due_date: string;
 };
 
+export type InteractionType = "call" | "text" | "video";
+
+export type TimelineEvent = {
+  id: string;
+  friendId: string;
+  type: InteractionType;
+  title: string;
+  date: string;
+};
+
 type FriendsContextValue = {
   friends: Friend[];
+  timeline: TimelineEvent[];
   loading: boolean;
   error: string | null;
   refreshFriends: () => Promise<void>;
+  addTimelineEvent: (event: Omit<TimelineEvent, "id">) => void;
 };
 
 const FriendsContext = createContext<FriendsContextValue | undefined>(undefined);
 
 export function FriendsProvider({ children }: { children: React.ReactNode }) {
   const [friends, setFriends] = useState<Friend[]>([]);
+  const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,9 +74,46 @@ export function FriendsProvider({ children }: { children: React.ReactNode }) {
     void refreshFriends();
   }, [refreshFriends]);
 
+  useEffect(() => {
+    const savedTimeline = localStorage.getItem("keenkeeper.timeline");
+    if (!savedTimeline) {
+      return;
+    }
+
+    try {
+      const parsedTimeline = JSON.parse(savedTimeline) as TimelineEvent[];
+      if (Array.isArray(parsedTimeline)) {
+        setTimeline(parsedTimeline);
+      }
+    } catch {
+      localStorage.removeItem("keenkeeper.timeline");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("keenkeeper.timeline", JSON.stringify(timeline));
+  }, [timeline]);
+
+  const addTimelineEvent = useCallback((event: Omit<TimelineEvent, "id">) => {
+    setTimeline((previous) => [
+      {
+        ...event,
+        id: crypto.randomUUID(),
+      },
+      ...previous,
+    ]);
+  }, []);
+
   const value = useMemo(
-    () => ({ friends, loading, error, refreshFriends }),
-    [friends, loading, error, refreshFriends],
+    () => ({
+      friends,
+      timeline,
+      loading,
+      error,
+      refreshFriends,
+      addTimelineEvent,
+    }),
+    [friends, timeline, loading, error, refreshFriends, addTimelineEvent],
   );
 
   return (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { FriendsProvider } from "@/context/friends-context";
+import AppToaster from "@/components/app-toaster";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <AppToaster />
         </FriendsProvider>
       </body>
     </html>

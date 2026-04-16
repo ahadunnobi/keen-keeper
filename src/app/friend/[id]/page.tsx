@@ -1,15 +1,37 @@
 "use client";
 
-import { useFriends } from "@/context/friends-context";
+import { type InteractionType, useFriends } from "@/context/friends-context";
 import { Archive, Clock3, MessageSquareText, Pencil, Phone, Trash2, Video } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function FriendDetailsPage() {
   const { id } = useParams<{ id: string }>();
-  const { friends, loading, error } = useFriends();
+  const { friends, loading, error, addTimelineEvent } = useFriends();
   const friend = friends.find((item) => item.id === id);
+
+  const handleCheckIn = (type: InteractionType) => {
+    if (!friend) {
+      return;
+    }
+
+    const labels: Record<InteractionType, string> = {
+      call: "Call",
+      text: "Text",
+      video: "Video",
+    };
+
+    addTimelineEvent({
+      friendId: friend.id,
+      type,
+      title: `${labels[type]} with ${friend.name}`,
+      date: new Date().toISOString(),
+    });
+
+    toast.success(`${labels[type]} logged!`);
+  };
 
   if (loading) {
     return (
@@ -216,6 +238,7 @@ export default function FriendDetailsPage() {
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <button
                 type="button"
+                onClick={() => handleCheckIn("call")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-900/40"
               >
                 <Phone size={16} />
@@ -223,6 +246,7 @@ export default function FriendDetailsPage() {
               </button>
               <button
                 type="button"
+                onClick={() => handleCheckIn("text")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-blue-300 bg-blue-50 px-3 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:bg-blue-900/40"
               >
                 <MessageSquareText size={16} />
@@ -230,6 +254,7 @@ export default function FriendDetailsPage() {
               </button>
               <button
                 type="button"
+                onClick={() => handleCheckIn("video")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-violet-300 bg-violet-50 px-3 py-3 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 dark:border-violet-800 dark:bg-violet-950/40 dark:text-violet-300 dark:hover:bg-violet-900/40"
               >
                 <Video size={16} />
