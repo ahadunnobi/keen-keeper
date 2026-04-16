@@ -1,7 +1,7 @@
 "use client";
 
 import { useFriends } from "@/context/friends-context";
-import { Archive, Clock3, Trash2 } from "lucide-react";
+import { Archive, Clock3, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -177,6 +177,32 @@ export default function FriendDetailsPage() {
                   {friend.next_due_date}
                 </p>
               </article>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold tracking-tight">
+                Relationship Goal
+              </h2>
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-700 transition hover:border-violet-400 hover:bg-violet-50 hover:text-violet-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-violet-700 dark:hover:bg-violet-950/40 dark:hover:text-violet-300"
+              >
+                <Pencil size={14} />
+                Edit
+              </button>
+            </div>
+            <div className="mt-4 rounded-xl border border-neutral-200/80 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950/60">
+              <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                Target Cadence
+              </p>
+              <p className="mt-2 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+                Every {friend.goal} days
+              </p>
+              <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
+                Next touchpoint due on {friend.next_due_date}.
+              </p>
             </div>
           </section>
         </div>
