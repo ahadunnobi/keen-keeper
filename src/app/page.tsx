@@ -18,10 +18,7 @@ export default function Home() {
     totalFriends === 0
       ? 0
       : Math.round(
-          friends.reduce((sum, friend) => {
-            const parsedGoal = Number.parseInt(friend.goal, 10);
-            return sum + (Number.isNaN(parsedGoal) ? 0 : parsedGoal);
-          }, 0) / totalFriends,
+          friends.reduce((sum, friend) => sum + friend.goal, 0) / totalFriends,
         );
 
   const summaryCards = [

@@ -10,7 +10,7 @@ import {
 } from "react";
 
 export type Friend = {
-  id: string;
+  id: number;
   name: string;
   picture: string;
   email: string;
@@ -18,7 +18,7 @@ export type Friend = {
   status: string;
   tags: string[];
   bio: string;
-  goal: string;
+  goal: number;
   next_due_date: string;
 };
 
@@ -26,7 +26,7 @@ export type InteractionType = "call" | "text" | "video";
 
 export type TimelineEvent = {
   id: string;
-  friendId: string;
+  friendId: number;
   type: InteractionType;
   title: string;
   date: string;

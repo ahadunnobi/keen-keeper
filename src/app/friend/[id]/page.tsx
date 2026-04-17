@@ -10,10 +10,11 @@ import toast from "react-hot-toast";
 
 export default function FriendDetailsPage() {
   const { id } = useParams<{ id: string }>();
+  const numericId = Number.parseInt(id, 10);
   const { friends, timeline, loading, error, addTimelineEvent } = useFriends();
-  const friend = friends.find((item) => item.id === id);
+  const friend = friends.find((item) => item.id === numericId);
 
-  const friendTimeline = timeline.filter((event) => event.friendId === id);
+  const friendTimeline = timeline.filter((event) => event.friendId === numericId);
 
   const handleCheckIn = (type: InteractionType) => {
     if (!friend) {
@@ -157,18 +158,21 @@ export default function FriendDetailsPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:border-violet-400 hover:bg-violet-50 hover:text-violet-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-violet-700 dark:hover:bg-violet-950/40 dark:hover:text-violet-300"
                 >
                   <Clock3 size={16} />
+                  Snooze 2 Weeks
                 </button>
                 <button
                   type="button"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-amber-700 dark:hover:bg-amber-950/40 dark:hover:text-amber-300"
                 >
                   <Archive size={16} />
+                  Archive
                 </button>
                 <button
                   type="button"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:border-red-400 hover:bg-red-50 hover:text-red-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-red-700 dark:hover:bg-red-950/40 dark:hover:text-red-300"
                 >
                   <Trash2 size={16} />
+                  Delete
                 </button>
               </div>
             </div>
@@ -203,6 +207,24 @@ export default function FriendDetailsPage() {
                   {friend.next_due_date}
                 </p>
               </article>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight">Relationship Goal</h2>
+                <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
+                  Contact every {friend.goal} days to maintain momentum.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800"
+              >
+                <Pencil size={15} />
+                Edit
+              </button>
             </div>
           </section>
 
