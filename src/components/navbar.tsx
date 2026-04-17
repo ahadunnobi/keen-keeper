@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { BarChart3, Clock3, Home, Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -22,9 +23,13 @@ export default function Navbar() {
           href="/"
           className="inline-flex items-center gap-2 rounded-lg px-2 py-1 text-base font-semibold tracking-tight text-neutral-900 transition hover:bg-neutral-100 dark:text-neutral-100 dark:hover:bg-neutral-800"
         >
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-neutral-900 text-xs font-bold text-white dark:bg-neutral-100 dark:text-neutral-900">
-            K
-          </span>
+          <Image
+            src="/logo.png"
+            alt="KeenKeeper Logo"
+            width={24}
+            height={24}
+            className="h-6 w-6 object-contain"
+          />
           KeenKeeper
         </Link>
 

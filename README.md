@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo.png" width="120" alt="KeenKeeper Logo">
+</p>
+
 # KeenKeeper
 
 KeenKeeper is a friendship relationship tracker built with Next.js. It helps you stay intentional about check-ins by organizing your friends, logging interactions (call, text, video), and showing timeline + analytics insights from those logs.
