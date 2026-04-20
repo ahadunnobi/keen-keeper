@@ -13,10 +13,19 @@ const statusStyles: Record<string, string> = {
     "border-emerald-300 bg-emerald-50/80 dark:border-emerald-900/70 dark:bg-emerald-950/30",
 };
 
+const badgeStyles: Record<string, string> = {
+  overdue: "bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800",
+  "almost due": "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800",
+  "on-track": "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800",
+};
+
 export default function FriendCard({ friend }: FriendCardProps) {
+  const statusKey = friend.status.toLowerCase();
   const statusClass =
-    statusStyles[friend.status.toLowerCase()] ??
+    statusStyles[statusKey] ??
     "border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900";
+
+  const badgeClass = badgeStyles[statusKey] ?? "bg-neutral-100 text-neutral-600 border-neutral-200 dark:bg-neutral-800 dark:text-neutral-400";
 
   return (
     <article
@@ -29,9 +38,12 @@ export default function FriendCard({ friend }: FriendCardProps) {
           className="h-14 w-14 rounded-full object-cover ring-2 ring-white/70 dark:ring-neutral-800/70"
         />
         <div className="min-w-0 flex-1">
-          <h3 className="truncate text-base font-semibold text-neutral-900 dark:text-neutral-100">
-            {friend.name}
-          </h3>
+          <div className="flex items-center justify-between gap-1">
+            <h3 className="truncate text-base font-semibold text-neutral-900 dark:text-neutral-100">
+              {friend.name}
+            </h3>
+
+          </div>
           <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-300">
             {friend.days_since_contact} days since contact
           </p>
@@ -39,6 +51,9 @@ export default function FriendCard({ friend }: FriendCardProps) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
+        <span className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badgeClass}`}>
+          {friend.status}
+        </span>
         {friend.tags.map((tag) => (
           <span
             key={tag}
@@ -47,6 +62,7 @@ export default function FriendCard({ friend }: FriendCardProps) {
             {tag}
           </span>
         ))}
+
       </div>
     </article>
   );
