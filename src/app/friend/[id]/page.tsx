@@ -6,6 +6,7 @@ import { Archive, Clock3, MessageSquareText, Pencil, Phone, Trash2, Video } from
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingAnimation from "@/components/loading-animation";
 
@@ -13,6 +14,15 @@ export default function FriendDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const numericId = Number.parseInt(id, 10);
   const { friends, timeline, loading, error, addTimelineEvent } = useFriends();
+  const [localLoading, setLocalLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLocalLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const friend = friends.find((item) => item.id === numericId);
 
   const friendTimeline = timeline.filter((event) => event.friendId === numericId);
@@ -44,7 +54,7 @@ export default function FriendDetailsPage() {
     toast.success(`${actionVerbs[type]} ${friend.name}`);
   };
 
-  if (loading) {
+  if (loading || localLoading) {
     return <LoadingAnimation />;
   }
 
