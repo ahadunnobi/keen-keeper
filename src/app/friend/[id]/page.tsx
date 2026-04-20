@@ -27,6 +27,12 @@ export default function FriendDetailsPage() {
       video: "Video",
     };
 
+    const actionVerbs: Record<InteractionType, string> = {
+      call: "Called",
+      text: "Texted",
+      video: "Video called",
+    };
+
     addTimelineEvent({
       friendId: friend.id,
       type,
@@ -34,7 +40,7 @@ export default function FriendDetailsPage() {
       date: new Date().toISOString(),
     });
 
-    toast.success(`${labels[type]} logged!`);
+    toast.success(`${actionVerbs[type]} ${friend.name}`);
   };
 
   if (loading) {
