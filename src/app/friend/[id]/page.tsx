@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
+import LoadingAnimation from "@/components/loading-animation";
 
 export default function FriendDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -44,14 +45,7 @@ export default function FriendDetailsPage() {
   };
 
   if (loading) {
-    return (
-      <section className="space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight">Friend Details</h1>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          Loading friend profile...
-        </p>
-      </section>
-    );
+    return <LoadingAnimation />;
   }
 
   if (error) {

@@ -4,6 +4,7 @@ import { useFriends } from "@/context/friends-context";
 import FriendCard from "@/components/friend-card";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import LoadingAnimation from "@/components/loading-animation";
 
 export default function Home() {
   const { friends, loading, error } = useFriends();
@@ -74,14 +75,7 @@ export default function Home() {
         </p>
       </header>
 
-      {loading ? (
-        <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
-          <span className="h-5 w-5 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-800 dark:border-neutral-700 dark:border-t-neutral-200" />
-          <p className="text-sm text-neutral-600 dark:text-neutral-300">
-            Loading friends...
-          </p>
-        </div>
-      ) : null}
+      {loading ? <LoadingAnimation /> : null}
 
       {error ? (
         <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-300">

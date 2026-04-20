@@ -49,11 +49,10 @@ export default function FriendCard({ friend }: FriendCardProps) {
           </p>
         </div>
       </div>
-
+      <span className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badgeClass}`}>
+        {friend.status}
+      </span>
       <div className="mt-4 flex flex-wrap gap-2">
-        <span className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${badgeClass}`}>
-          {friend.status}
-        </span>
         {friend.tags.map((tag) => (
           <span
             key={tag}
